@@ -22,6 +22,8 @@ import (
 	"code.gitea.io/gitea/services/forms"
 )
 
+//"/home/alex/gitea/routers/web/admin/gopsutil"
+//"github.com/shirou/gopsutil/v3"
 const (
 	tplDashboard   base.TplName = "admin/dashboard"
 	tplCron        base.TplName = "admin/cron"
@@ -176,9 +178,20 @@ func MonitorStats(ctx *context.Context) {
 		}
 		statsKeys = append(statsKeys, k)
 	}
-	statsKeys = append(statsKeys, "TempCPU","TempGPU","CPU_LOAD","Cores")
-	tempr, _ := gopsutil.cpu.Cores()
-	//statsCounter["TempCPU"] = tempr.acpitz.shwtemp.current()
+	statsKeys = append(statsKeys, "CPU_Cores","CPU_load","CPU_Temp","Memory_total")
+	// cmd := exec.Command("lscpu|grep -m1 'CPU(s):'")
+	// output, err := cmd.Output()
+	// if err != nil {
+    //     fmt.Println("Error:", err)
+    //     return
+    // }
+    //fmt.Println("Output:", string(output))
+	//tempr, _ := gopsutil.cpu.Cores()
+	//output
+	statsCounter["CPU_Cores"] = "16"
+	statsCounter["CPU_load"] = "5%"
+	statsCounter["CPU_Temp"] = "55°C"
+	statsCounter["Memory_total"] = "16Gb"
 	//statsCounter["TempGPU"] = tempr.acpitz.shwtemp.current()
 	//statsCounter["CPU_LOAD"] =tempr.acpitz.shwtemp.current()
 	//statsCounter["Cores"] =tempr.acpitz.shwtemp.current()
