@@ -176,6 +176,12 @@ func MonitorStats(ctx *context.Context) {
 		}
 		statsKeys = append(statsKeys, k)
 	}
+	statsKeys = append(statsKeys, "TempCPU","TempGPU","CPU_LOAD","Cores")
+	tempr, _ := gopsutil.cpu.Cores()
+	//statsCounter["TempCPU"] = tempr.acpitz.shwtemp.current()
+	//statsCounter["TempGPU"] = tempr.acpitz.shwtemp.current()
+	//statsCounter["CPU_LOAD"] =tempr.acpitz.shwtemp.current()
+	//statsCounter["Cores"] =tempr.acpitz.shwtemp.current()
 	sort.Strings(statsKeys)
 	ctx.Data["StatsKeys"] = statsKeys
 	ctx.Data["StatsCounter"] = statsCounter
